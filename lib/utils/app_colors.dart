@@ -16,4 +16,8 @@ class AppColors {
   static const Color iconColor = Color.fromARGB(255, 15, 61, 82);
   static const Color cardBackground = Color.fromARGB(255, 21, 54, 69);
   static const Color inputBackground = Color.fromARGB(255, 46, 81, 97);
+  static const Color btnDisabled = Color(0xFF1C3347);
+  static const Color bg = background;
+  static const Color card = cardDark;
+  static const Color cardBorder = inputBorder;
 }

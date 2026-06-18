@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jobportal/widgets/pricing_plans_sheet.dart';
 import '../utils/app_colors.dart';
 import '../widgets/ai_talent_hub_card.dart';
 import '../widgets/recruiter_database_card.dart';
@@ -6,6 +7,8 @@ import '../widgets/ai_search_bar.dart';
 import '../widgets/categories_filter.dart';
 import '../widgets/applicant_card.dart';
 import '../widgets/bottom_nav_bar.dart';
+import '../widgets/status_filters_section.dart';
+import 'Recruiter database screen.dart';
 
 class AppsScreen extends StatefulWidget {
   const AppsScreen({super.key});
@@ -77,14 +80,45 @@ class _AppsScreenState extends State<AppsScreen> {
     ),
   ];
 
+  // ── Status counts ─────────────────────────────────────────────
+  Map<String, int> get _statusCounts {
+    final map = <String, int>{
+      'All': _allApplicants.length,
+      'New': 0,
+      'Reviewing': 0,
+      'Shortlisted': 0,
+      'Accepted': 0,
+      'Rejected': 0,
+    };
+    for (final a in _allApplicants) {
+      switch (a.status) {
+        case AppStatus.newApp:
+          map['New'] = map['New']! + 1;
+          break;
+        case AppStatus.reviewing:
+          map['Reviewing'] = map['Reviewing']! + 1;
+          break;
+        case AppStatus.shortlisted:
+          map['Shortlisted'] = map['Shortlisted']! + 1;
+          break;
+        case AppStatus.accepted:
+          map['Accepted'] = map['Accepted']! + 1;
+          break;
+        case AppStatus.rejected:
+          map['Rejected'] = map['Rejected']! + 1;
+          break;
+      }
+    }
+    return map;
+  }
+
+  // ── Filtered list ─────────────────────────────────────────────
   List<ApplicantCardData> get _filtered {
     return _allApplicants.where((a) {
-      // Category filter
       if (_categoryIndex == 1 && a.jobType != 'Job') return false;
       if (_categoryIndex == 2 && a.jobType != 'Internship') return false;
       if (_categoryIndex == 3 && a.jobType != 'Freelance') return false;
 
-      // Status filter
       if (_statusFilter != 'All') {
         final statusMap = {
           'New': AppStatus.newApp,
@@ -96,7 +130,6 @@ class _AppsScreenState extends State<AppsScreen> {
         if (a.status != statusMap[_statusFilter]) return false;
       }
 
-      // Search
       if (_searchQuery.isNotEmpty) {
         final q = _searchQuery.toLowerCase();
         return a.name.toLowerCase().contains(q) ||
@@ -107,6 +140,7 @@ class _AppsScreenState extends State<AppsScreen> {
     }).toList();
   }
 
+  // ── Snackbar helper ───────────────────────────────────────────
   void _showSnack(String msg) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
@@ -119,6 +153,32 @@ class _AppsScreenState extends State<AppsScreen> {
     );
   }
 
+  // ── Sheet: Pricing Plans ──────────────────────────────────────
+  void _openPricingPlansSheet() {
+    showPricingPlansSheet(
+      context,
+      onPlanSelected: (plan) {
+        Navigator.of(context).pop();
+        _showSnack('Subscribed to ${plan.title}');
+      },
+      onMaybeLater: () {
+        _showSnack('Maybe later — come back anytime!');
+      },
+    );
+  }
+
+  void _openRecruiterDatabaseScreen() async {
+    final result = await Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => const RecruiterDatabaseScreen()),
+    );
+
+    if (result != null) {
+      _showSnack('Subscribed to ${result.title}');
+    }
+  }
+
+  // ── Build ─────────────────────────────────────────────────────
   @override
   Widget build(BuildContext context) {
     final filtered = _filtered;
@@ -143,9 +203,10 @@ class _AppsScreenState extends State<AppsScreen> {
               const SizedBox(height: 12),
 
               // ── 2. Recruiter Database Card ──
+              // Both onTap (card body) and onLockTap (lock icon) open Sheet 1.
               RecruiterDatabaseCard(
-                onTap: () => _showSnack('Recruiter Database tapped'),
-                onLockTap: () => _showSnack('Upgrade to Premium to unlock'),
+                onTap: _openRecruiterDatabaseScreen,
+                onLockTap: _openRecruiterDatabaseScreen,
               ),
 
               const SizedBox(height: 12),
@@ -166,6 +227,7 @@ class _AppsScreenState extends State<AppsScreen> {
 
               // ── 5. Status Filters ──
               StatusFiltersSection(
+                statusCounts: _statusCounts,
                 onStatusChanged: (s) => setState(() => _statusFilter = s),
               ),
 

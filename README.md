@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # jobportal
 
 A new Flutter project.
@@ -15,3 +16,6 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+=======
+# job_portal
+>>>>>>> f468bdcd0b3dabcbf5945727e65d1d150d04624b

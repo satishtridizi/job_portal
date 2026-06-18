@@ -1,38 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'screens/dashboard_screen.dart';
-import 'utils/app_colors.dart';
+import 'package:jobportal/screens/apps_screen.dart';
+import 'package:jobportal/screens/login_screen.dart';
 
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.light,
-    ),
-  );
-  runApp(const HireHubApp());
-}
+import 'package:jobportal/utils/app_colors.dart';
 
-class HireHubApp extends StatelessWidget {
-  const HireHubApp({super.key});
+import 'screens/Recruiter database screen.dart';
+
+void main() => runApp(const DemoApp());
+
+class DemoApp extends StatelessWidget {
+  const DemoApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'HireHub Dashboard',
+      title: 'Recruiter Database Demo',
+      theme: ThemeData.dark().copyWith(scaffoldBackgroundColor: AppColors.bg),
+      home: const LoginScreen(),
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        scaffoldBackgroundColor: AppColors.background,
-        colorScheme: const ColorScheme.dark(
-          primary: AppColors.primary,
-          surface: AppColors.cardDark,
-        ),
-        textTheme: const TextTheme(
-          bodyMedium: TextStyle(color: AppColors.textLight),
-        ),
-      ),
-      home: const DashboardScreen(),
     );
   }
 }
