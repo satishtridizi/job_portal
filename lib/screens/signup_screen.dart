@@ -10,6 +10,7 @@ class SignupScreen extends StatefulWidget {
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  bool _agreeTerms = false;
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -215,76 +216,65 @@ class _SignupScreenState extends State<SignupScreen> {
 
                     // Terms checkbox
                     Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        GestureDetector(
-                          onTap: () =>
-                              setState(() => _agreedToTerms = !_agreedToTerms),
-                          child: Container(
-                            width: 18,
-                            height: 18,
-                            decoration: BoxDecoration(
-                              color: _agreedToTerms
-                                  ? AppColors.primary
-                                  : Colors.transparent,
-                              border: Border.all(
-                                color: _agreedToTerms
-                                    ? AppColors.primary
-                                    : AppColors.iconColor,
-                                width: 1.5,
-                              ),
-                              borderRadius: BorderRadius.circular(4),
+                        SizedBox(
+                          width: 24,
+                          height: 24,
+                          child: Checkbox(
+                            value: _agreeTerms,
+                            onChanged: (value) {
+                              setState(() {
+                                _agreeTerms = value ?? false;
+                              });
+                            },
+                            activeColor: AppColors.primary,
+                            checkColor: Colors.black,
+                            side: BorderSide(
+                              color: AppColors.primary.withOpacity(.7),
+                              width: 1.5,
                             ),
-                            child: _agreedToTerms
-                                ? const Icon(
-                                    Icons.check,
-                                    color: Colors.black,
-                                    size: 13,
-                                  )
-                                : null,
                           ),
                         ),
+
                         const SizedBox(width: 10),
-                        Flexible(
-                          child: Wrap(
-                            children: [
-                              const Text(
-                                'I agree to the ',
-                                style: TextStyle(
-                                  color: AppColors.textGrey,
-                                  fontSize: 13,
-                                ),
+
+                        Expanded(
+                          child: RichText(
+                            text: TextSpan(
+                              style: const TextStyle(
+                                color: AppColors.textGrey,
+                                fontSize: 13,
                               ),
-                              GestureDetector(
-                                onTap: _onTermsOfService,
-                                child: const Text(
-                                  'Terms of Service',
-                                  style: TextStyle(
-                                    color: AppColors.primary,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w600,
+                              children: [
+                                const TextSpan(text: 'I agree to the '),
+                                WidgetSpan(
+                                  child: GestureDetector(
+                                    onTap: _onTermsOfService,
+                                    child: const Text(
+                                      'Terms of Service',
+                                      style: TextStyle(
+                                        color: AppColors.primary,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                              const Text(
-                                ' and ',
-                                style: TextStyle(
-                                  color: AppColors.textGrey,
-                                  fontSize: 13,
-                                ),
-                              ),
-                              GestureDetector(
-                                onTap: _onPrivacyPolicy,
-                                child: const Text(
-                                  'Privacy Policy',
-                                  style: TextStyle(
-                                    color: AppColors.primary,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w600,
+                                const TextSpan(text: ' and '),
+                                WidgetSpan(
+                                  child: GestureDetector(
+                                    onTap: _onPrivacyPolicy,
+                                    child: const Text(
+                                      'Privacy Policy',
+                                      style: TextStyle(
+                                        color: AppColors.primary,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -296,9 +286,18 @@ class _SignupScreenState extends State<SignupScreen> {
                     HireHubButton(
                       label: 'Create Account',
                       prefixIcon: Icons.auto_awesome,
-                      onTap: _onCreateAccount,
+                      onTap: _agreeTerms
+                          ? _onCreateAccount
+                          : () {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  content: Text(
+                                    'Please accept Terms of Service and Privacy Policy',
+                                  ),
+                                ),
+                              );
+                            },
                     ),
-
                     const SizedBox(height: 20),
 
                     // Sign In link

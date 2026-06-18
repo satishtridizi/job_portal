@@ -16,12 +16,12 @@ class HireHubLogo extends StatelessWidget {
           height: 70,
           decoration: BoxDecoration(
             color: AppColors.primary,
-            borderRadius: BorderRadius.circular(18),
+            borderRadius: BorderRadius.circular(22),
             boxShadow: [
               BoxShadow(
-                color: AppColors.primary.withOpacity(0.6),
-                blurRadius: 30,
-                spreadRadius: 4,
+                color: AppColors.primary.withOpacity(.6),
+                blurRadius: 35,
+                spreadRadius: 8,
               ),
             ],
           ),
@@ -33,13 +33,12 @@ class HireHubLogo extends StatelessWidget {
         ),
         const SizedBox(height: 14),
         // App Name
-        const Text(
+        Text(
           'HireHub',
           style: TextStyle(
             color: AppColors.primary,
-            fontSize: 28,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 0.5,
+            fontSize: 34,
+            fontWeight: FontWeight.w700,
           ),
         ),
         const SizedBox(height: 6),
@@ -47,7 +46,11 @@ class HireHubLogo extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Icon(Icons.hub_outlined, color: AppColors.textGrey, size: 15),
+            const Icon(
+              Icons.psychology_outlined,
+              color: AppColors.primary,
+              size: 18,
+            ),
             const SizedBox(width: 5),
             Text(
               subtitle,
@@ -71,14 +74,21 @@ class HireHubCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 28),
       decoration: BoxDecoration(
-        color: AppColors.cardBackground,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.inputBorder, width: 1),
+        borderRadius: BorderRadius.circular(30),
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xFF123A4A), Color(0xFF04131E)],
+        ),
+        border: Border.all(
+          color: AppColors.primary.withOpacity(.45),
+          width: 1.2,
+        ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.3),
-            blurRadius: 20,
-            offset: const Offset(0, 8),
+            color: AppColors.primary.withOpacity(.15),
+            blurRadius: 40,
+            spreadRadius: 2,
           ),
         ],
       ),
@@ -94,11 +104,11 @@ class AIBadge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
       decoration: BoxDecoration(
-        color: AppColors.inputBackground,
+        color: const Color(0xff233A42),
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.inputBorder),
+        border: Border.all(color: AppColors.primary.withOpacity(.5)),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
@@ -106,26 +116,15 @@ class AIBadge extends StatelessWidget {
           Container(
             width: 8,
             height: 8,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: AppColors.primary,
               shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.primary.withOpacity(0.8),
-                  blurRadius: 6,
-                  spreadRadius: 1,
-                ),
-              ],
             ),
           ),
-          const SizedBox(width: 5),
+          const SizedBox(width: 6),
           const Text(
             'AI',
-            style: TextStyle(
-              color: AppColors.textLight,
-              fontSize: 11,
-              fontWeight: FontWeight.w600,
-            ),
+            style: TextStyle(color: AppColors.primary, fontSize: 12),
           ),
         ],
       ),
@@ -161,9 +160,9 @@ class HireHubInputField extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-            color: AppColors.inputBackground,
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: AppColors.inputBorder, width: 1),
+            color: Colors.black.withOpacity(.25),
+            borderRadius: BorderRadius.circular(18),
+            border: Border.all(color: AppColors.primary.withOpacity(.45)),
           ),
           child: TextField(
             controller: controller,
