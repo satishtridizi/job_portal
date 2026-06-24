@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:jobportal/screens/JobPostingScreen.dart';
+import 'package:jobportal/screens/apps_screen.dart';
 import 'package:jobportal/widgets/bottom_nav_bar.dart';
 import 'package:jobportal/widgets/filter_applications.dart';
 import '../utils/app_colors.dart';
@@ -113,15 +115,44 @@ class _DashboardScreenState extends State<DashboardScreen> {
       bottomNavigationBar: HireHubBottomNavBar(
         currentIndex: _navIndex,
         onTap: (i) {
-          setState(() => _navIndex = i);
-          const labels = [
-            'Apps',
-            'Postings',
-            'Dashboard',
-            'Messages',
-            'Settings',
-          ];
-          _showSnack('${labels[i]} tapped');
+          if (i == _navIndex) return;
+
+          switch (i) {
+            case 0:
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (_) => const AppsScreen()),
+              );
+              break;
+
+            case 1:
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (_) => const JobPostingScreen()),
+              );
+              break;
+
+            case 2:
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (_) => const DashboardScreen()),
+              );
+              break;
+
+            // case 3:
+            //   Navigator.pushReplacement(
+            //     context,
+            //     MaterialPageRoute(builder: (_) => const MessagesScreen()),
+            //   );
+            //   break;
+
+            // case 4:
+            //   Navigator.pushReplacement(
+            //     context,
+            //     MaterialPageRoute(builder: (_) => const SettingsScreen()),
+            //   );
+            //   break;
+          }
         },
       ),
     );

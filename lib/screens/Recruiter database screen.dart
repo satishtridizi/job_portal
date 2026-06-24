@@ -132,12 +132,14 @@ class _RecruiterDatabaseScreenState extends State<RecruiterDatabaseScreen> {
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
                   width: double.infinity,
-                  height: 50,
+                  height: 58,
                   decoration: BoxDecoration(
-                    color: _selected != null
-                        ? AppColors.primary
-                        : AppColors.btnDisabled,
-                    borderRadius: BorderRadius.circular(14),
+                    borderRadius: BorderRadius.circular(28),
+                    gradient: const LinearGradient(
+                      begin: Alignment.centerLeft,
+                      end: Alignment.centerRight,
+                      colors: [Color(0xFF374552), Color(0xFF2F3540)],
+                    ),
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -155,10 +157,8 @@ class _RecruiterDatabaseScreenState extends State<RecruiterDatabaseScreen> {
                             ? 'Select a Plan'
                             : 'Subscribe to ${_selected!.shortName} Plan',
                         style: TextStyle(
-                          color: _selected != null
-                              ? Colors.black
-                              : AppColors.textGrey,
-                          fontSize: 15,
+                          color: const Color(0xFF8E8E8E),
+                          fontSize: 16,
                           fontWeight: FontWeight.w700,
                         ),
                       ),
@@ -173,18 +173,21 @@ class _RecruiterDatabaseScreenState extends State<RecruiterDatabaseScreen> {
                 onTap: () => Navigator.of(context).maybePop(),
                 child: Container(
                   width: double.infinity,
-                  height: 50,
+                  height: 58,
                   decoration: BoxDecoration(
-                    color: AppColors.card,
-                    borderRadius: BorderRadius.circular(14),
-                    border: Border.all(color: AppColors.cardBorder, width: 1),
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(28),
+                    border: Border.all(
+                      color: const Color(0xFF6E5A00),
+                      width: 1.3,
+                    ),
                   ),
                   alignment: Alignment.center,
                   child: const Text(
                     'Maybe Later',
                     style: TextStyle(
                       color: AppColors.textWhite,
-                      fontSize: 15,
+                      fontSize: 16,
                       fontWeight: FontWeight.w700,
                     ),
                   ),

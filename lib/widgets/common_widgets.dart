@@ -12,8 +12,8 @@ class HireHubLogo extends StatelessWidget {
       children: [
         // Glowing icon container
         Container(
-          width: 70,
-          height: 70,
+          width: 60,
+          height: 60,
           decoration: BoxDecoration(
             color: AppColors.primary,
             borderRadius: BorderRadius.circular(22),
@@ -28,20 +28,20 @@ class HireHubLogo extends StatelessWidget {
           child: const Icon(
             Icons.work_outline_rounded,
             color: Colors.black,
-            size: 36,
+            size: 30,
           ),
         ),
-        const SizedBox(height: 14),
+        const SizedBox(height: 8),
         // App Name
         Text(
           'HireHub',
           style: TextStyle(
             color: AppColors.primary,
-            fontSize: 34,
+            fontSize: 26,
             fontWeight: FontWeight.w700,
           ),
         ),
-        const SizedBox(height: 6),
+        const SizedBox(height: 4),
         // Subtitle row with icon
         Row(
           mainAxisSize: MainAxisSize.min,
@@ -72,7 +72,7 @@ class HireHubCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 28),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30),
         gradient: const LinearGradient(
@@ -182,7 +182,7 @@ class HireHubInputField extends StatelessWidget {
               ),
               suffixIcon: suffixWidget,
               border: InputBorder.none,
-              contentPadding: const EdgeInsets.symmetric(vertical: 16),
+              contentPadding: const EdgeInsets.symmetric(vertical: 6),
             ),
           ),
         ),
@@ -218,7 +218,7 @@ class HireHubButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: double.infinity,
-        height: 52,
+        height: 45,
         decoration: BoxDecoration(
           color: AppColors.primary,
           borderRadius: BorderRadius.circular(12),

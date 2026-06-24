@@ -148,7 +148,7 @@ class _PricingPlansSheetState extends State<PricingPlansSheet> {
                   Text(
                     'Select a Plan',
                     style: TextStyle(
-                      color: _selected != null ? Colors.black : _C.textGrey,
+                      color: const Color(0xFF8E8E8E),
                       fontSize: 16,
                       fontWeight: FontWeight.w700,
                     ),

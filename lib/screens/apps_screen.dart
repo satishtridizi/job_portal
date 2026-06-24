@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:jobportal/models/ApplicantDetails.dart';
+import 'package:jobportal/screens/ApplicationDetailsScreen.dart';
+import 'package:jobportal/screens/JobPostingScreen.dart';
+import 'package:jobportal/screens/dashboard_screen.dart';
 import 'package:jobportal/widgets/pricing_plans_sheet.dart';
 import '../utils/app_colors.dart';
 import '../widgets/ai_talent_hub_card.dart';
@@ -266,7 +270,32 @@ class _AppsScreenState extends State<AppsScreen> {
                     final a = filtered[i];
                     return ApplicantCard(
                       data: a,
-                      onTap: () => _showSnack('${a.name} tapped'),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => ApplicationDetailsScreen(
+                              applicant: ApplicantDetails(
+                                name: a.name,
+                                role: a.role,
+                                email: a.email,
+                                phone: '+1 (555) 123-4567',
+                                appliedAgo: a.timeAgo,
+                                matchScore: a.matchScore,
+                                status: 'New',
+                                resumeName: 'resume_sarah_johnson.pdf',
+                                coverLetter:
+                                    'I am excited to apply for the Senior Software Engineer position. '
+                                    'With over 6 years of experience in full-stack development, '
+                                    'I have led multiple projects from conception to deployment. '
+                                    'My expertise in React, Node.js, and cloud architecture aligns perfectly '
+                                    'with your requirements. I am passionate about writing clean, maintainable '
+                                    'code and mentoring junior developers.',
+                              ),
+                            ),
+                          ),
+                        );
+                      },
                       onStatusTap: () =>
                           _showSnack('Change status for ${a.name}'),
                     );
@@ -283,15 +312,48 @@ class _AppsScreenState extends State<AppsScreen> {
       bottomNavigationBar: HireHubBottomNavBar(
         currentIndex: _navIndex,
         onTap: (i) {
-          setState(() => _navIndex = i);
-          const labels = [
-            'Apps',
-            'Postings',
-            'Dashboard',
-            'Messages',
-            'Settings',
-          ];
-          _showSnack('${labels[i]} tapped');
+          if (i == _navIndex) return;
+
+          switch (i) {
+            case 0:
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (_) => const AppsScreen()),
+              );
+              break;
+
+            case 1:
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (_) => const JobPostingScreen()),
+              );
+              break;
+
+            case 2:
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (_) => const DashboardScreen()),
+              );
+              break;
+
+            case 3:
+              // Navigator.pushReplacement(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (_) => const MessagesScreen(),
+              //   ),
+              // );
+              break;
+
+            case 4:
+              // Navigator.pushReplacement(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (_) => const SettingsScreen(),
+              //   ),
+              // );
+              break;
+          }
         },
       ),
     );
