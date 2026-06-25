@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jobportal/screens/JobPostingScreen.dart';
 import 'package:jobportal/screens/apps_screen.dart';
+import 'package:jobportal/screens/messages_screen.dart';
+import 'package:jobportal/screens/settings_screen.dart';
 import 'package:jobportal/widgets/bottom_nav_bar.dart';
 import 'package:jobportal/widgets/filter_applications.dart';
 import '../utils/app_colors.dart';
@@ -139,19 +141,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
               );
               break;
 
-            // case 3:
-            //   Navigator.pushReplacement(
-            //     context,
-            //     MaterialPageRoute(builder: (_) => const MessagesScreen()),
-            //   );
-            //   break;
+            case 3:
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (_) => const MessagesScreen()),
+              );
+              break;
 
-            // case 4:
-            //   Navigator.pushReplacement(
-            //     context,
-            //     MaterialPageRoute(builder: (_) => const SettingsScreen()),
-            //   );
-            //   break;
+            case 4:
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (_) => const SettingsScreen()),
+              );
+              break;
           }
         },
       ),

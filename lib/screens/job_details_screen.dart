@@ -348,20 +348,29 @@ class _JobDetailsScreenState extends State<JobDetailsScreen> {
   Widget _buildFooter() {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.all(16),
-      decoration: _cardDecoration(),
-      child: Column(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+      decoration: BoxDecoration(
+        color: const Color(0xFF05141E),
+        borderRadius: BorderRadius.circular(22),
+        border: Border.all(color: const Color(0xFF8A6A00), width: 1.2),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
-            "Posted 1 week ago",
-            style: TextStyle(color: Colors.white.withOpacity(.7)),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            "Closes on ${job.closingDate}",
-            style: const TextStyle(
-              color: Colors.amber,
-              fontWeight: FontWeight.bold,
+          const Icon(Icons.auto_awesome, color: Colors.amber, size: 18),
+
+          const SizedBox(width: 18),
+
+          Expanded(
+            child: Text(
+              "Posted 1 week ago • Closes on ${job.closingDate}",
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Color(0xFF8F9196),
+                fontSize: 12,
+                fontWeight: FontWeight.w500,
+                height: 1.4,
+              ),
             ),
           ),
         ],

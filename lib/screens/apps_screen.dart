@@ -3,6 +3,8 @@ import 'package:jobportal/models/ApplicantDetails.dart';
 import 'package:jobportal/screens/ApplicationDetailsScreen.dart';
 import 'package:jobportal/screens/JobPostingScreen.dart';
 import 'package:jobportal/screens/dashboard_screen.dart';
+import 'package:jobportal/screens/messages_screen.dart';
+import 'package:jobportal/screens/settings_screen.dart';
 import 'package:jobportal/widgets/pricing_plans_sheet.dart';
 import '../utils/app_colors.dart';
 import '../widgets/ai_talent_hub_card.dart';
@@ -337,21 +339,17 @@ class _AppsScreenState extends State<AppsScreen> {
               break;
 
             case 3:
-              // Navigator.pushReplacement(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (_) => const MessagesScreen(),
-              //   ),
-              // );
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (_) => const MessagesScreen()),
+              );
               break;
 
             case 4:
-              // Navigator.pushReplacement(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (_) => const SettingsScreen(),
-              //   ),
-              // );
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (_) => const SettingsScreen()),
+              );
               break;
           }
         },

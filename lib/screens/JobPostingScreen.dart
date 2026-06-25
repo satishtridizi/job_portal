@@ -6,6 +6,8 @@ import 'package:jobportal/screens/apps_screen.dart';
 import 'package:jobportal/screens/dashboard_screen.dart';
 import 'package:jobportal/screens/internship_postings.dart';
 import 'package:jobportal/screens/job_postings_app.dart';
+import 'package:jobportal/screens/messages_screen.dart';
+import 'package:jobportal/screens/settings_screen.dart';
 
 import 'package:jobportal/widgets/JobCard.dart';
 import 'package:jobportal/widgets/JobPostingHeader.dart';
@@ -80,17 +82,17 @@ class _JobPostingScreenState extends State<JobPostingScreen> {
               break;
 
             case 3:
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (_) => const MessagesScreen()),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const MessagesScreen()),
+              );
               break;
 
             case 4:
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(builder: (_) => const SettingsScreen()),
-              // );
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const SettingsScreen()),
+              );
               break;
           }
         },

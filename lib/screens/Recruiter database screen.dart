@@ -138,7 +138,10 @@ class _RecruiterDatabaseScreenState extends State<RecruiterDatabaseScreen> {
                     gradient: const LinearGradient(
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
-                      colors: [Color(0xFF374552), Color(0xFF2F3540)],
+                      colors: [
+                        Color.fromARGB(255, 255, 213, 0),
+                        Color.fromARGB(255, 234, 255, 0),
+                      ],
                     ),
                   ),
                   child: Row(
@@ -148,7 +151,7 @@ class _RecruiterDatabaseScreenState extends State<RecruiterDatabaseScreen> {
                         Icons.workspace_premium_rounded,
                         color: _selected != null
                             ? Colors.black
-                            : AppColors.textGrey,
+                            : const Color.fromARGB(255, 168, 174, 138),
                         size: 18,
                       ),
                       const SizedBox(width: 8),
@@ -157,7 +160,7 @@ class _RecruiterDatabaseScreenState extends State<RecruiterDatabaseScreen> {
                             ? 'Select a Plan'
                             : 'Subscribe to ${_selected!.shortName} Plan',
                         style: TextStyle(
-                          color: const Color(0xFF8E8E8E),
+                          color: const Color.fromARGB(255, 0, 0, 0),
                           fontSize: 16,
                           fontWeight: FontWeight.w700,
                         ),
